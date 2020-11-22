@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>Crunch</h1>
+    <h5 id="room-check">Please Enter Valid Room Code</h5>
+    <form action="">
+        <input id="input" autocomplete="off" placeholder="Enter Room Code" /><button>Join</button>
+    </form>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            var socket = io();
+
+            //Check Room
+            $('#input').keyup(function(e) {
+                if ($('#input').val().length == 4) {
+                    socket.emit('room-check', $('#input').val());
+                } else {
+                    $('#room-check').text('Room Does Not Exist');
+                }
+            });
+            socket.on('room-check', function(check) {
+                console.log(check)
+                if (check) {
+                    $('#room-check').text('Room Does Exist');
+                } else {
+                    $('#room-check').text('Room Does Not Exist');
+                }
+            })
+        });
+    </script>
+
+</body>

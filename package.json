@@ -1,0 +1,23 @@
+{
+  "name": "crunch-app",
+  "version": "1.0.0",
+  "description": "A Simple Chat App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Hawking/crunch-app.git"
+  },
+  "author": "Alex Hawking",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-Hawking/crunch-app/issues"
+  },
+  "homepage": "https://github.com/Alex-Hawking/crunch-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.3"
+  }
+}
