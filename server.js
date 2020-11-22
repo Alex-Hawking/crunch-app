@@ -41,5 +41,11 @@ io.on('connection', (socket) => {
     socket.on('join-room', (info) => {
         rooms[rooms.findIndex(room => room.code == info.code)].users.push(info.name);
         socket.join(info.code);
+        console.log(rooms)
+    })
+
+    socket.on('message', (data) => {
+        console.log(data.user)
+        io.to(data.room).emit('message', 'From ' + data.user + ' : ' + data.message)
     })
 });
