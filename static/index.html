@@ -1,22 +1,48 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Crunch App</title>
+
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
-    <h1>Crunch</h1>
-    <h5 id="room-check">Please Enter Valid Room Code</h5>
-    <form action="" id="join-room">
-        <input id="room-input" autocomplete="off" placeholder="Enter Room Code" /><input id="name-input" autocomplete="off" placeholder="Enter Name" /><button>Join</button>
-    </form>
-    <form action="" id="send-message">
-        <input id="message-input" autocomplete="off" placeholder="Enter Message" /><button>Send Message</button>
-    </form>
+    <div id="sidebar">
+        <h3 id="currentRoom">1111</h3>
+        <h3 id="usernameDisplay">alexh</h3>
+        <ul id="currentMembers">
 
+        </ul>
+
+    </div>
+    <div id="messageContent">
+        <ul id="messages"></ul>
+        <div id="messageForm">
+            <input id="messageText" autocomplete="off" placeholder="Type Message Here" /><button id="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <!--Login Modal-->
+    <div id="loginModal">
+        <div id="modalContent">
+            <h1>Welcome To Crunch</h1><br/>
+            <span id="codeValidator">Please Enter A Valid Code</span><br/>
+            <input type="text" id="codeInput" placeholder="Enter Room Code" /><br/>
+            <input type="text" id="usernameInput" placeholder="Enter Username" /><br/>
+            <button id="joinRoom">Join Room</button>
+        </div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <script src="app.js"></script>
 
 </body>
+
+</html>
