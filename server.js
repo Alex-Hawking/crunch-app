@@ -26,5 +26,15 @@ io.on('connection', (socket) => {
         } else {
             callback(false);
         }
+    });
+
+    socket.on('join-room', (data) => {
+        socket.join(data.room);
+        socket.username = data.username;
+
+    });
+
+    socket.on('disconnect', () => {
+        console.log(socket.username)
     })
 });
