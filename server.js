@@ -28,13 +28,17 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('join-room', (data) => {
+    socket.on('join-room', (data, callback) => {
         socket.join(data.room);
         socket.username = data.username;
-
+        rooms[rooms.findIndex(room => room.code == data.room)].users.push(socket.username);
+        callback(true);
+        console.table(rooms);
     });
 
-    socket.on('disconnect', () => {
-        console.log(socket.username)
+    socket.on('disconnecting', () => {
+        var info = socket.rooms;
+        info.delete(socket.id);
+        var currentRoom = info[Symbol.iterator]().next().value;
     })
 });

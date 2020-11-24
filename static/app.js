@@ -4,7 +4,7 @@ var validCode = false;
 
 $('#codeInput').keyup(() => {
     if ($('#codeInput').val().length == 4) {
-        socket.emit('check-room', $('#codeInput').val(), function(codeIsValid) {
+        socket.emit('check-room', $('#codeInput').val(), (codeIsValid) => {
             if (codeIsValid) {
                 $('#codeValidator').text('Code Is Valid');
                 $('#codeValidator').css('color', 'green');
@@ -24,10 +24,14 @@ $('#codeInput').keyup(() => {
 
 $('#joinRoom').click(() => {
     if ($('#usernameInput').val().length > 0 && validCode) {
-        let code = $('#codeInput').val()
-        let name = $('#usernameInput').val()
-        socket.emit('join-room', { room: code, username: name });
+        var code = $('#codeInput').val();
+        var name = $('#usernameInput').val();
+        socket.emit('join-room', { room: code, username: name }, (joined) => {
+            if (joined) {
+                $('#loginModal').css('display', 'none');
+            }
+        });
     } else {
-        alert('Please Enter A Valid Code And/Or Username!')
+        alert('Please Enter A Valid Code And/Or Username!');
     }
 })
