@@ -28,17 +28,25 @@ io.on('connection', (socket) => {
         }
     });
 
+    //Add User To Room
     socket.on('join-room', (data, callback) => {
         socket.join(data.room);
         socket.username = data.username;
         rooms[rooms.findIndex(room => room.code == data.room)].users.push(socket.username);
         callback(true);
         console.table(rooms);
+        io.in(data.room).emit('update-users', rooms[rooms.findIndex(room => room.code == data.room)].users);
     });
 
+    //Remove User From Room
     socket.on('disconnecting', () => {
         var info = socket.rooms;
         info.delete(socket.id);
         var currentRoom = info[Symbol.iterator]().next().value;
+        try {
+            rooms[rooms.findIndex(room => room.code == currentRoom)].users = rooms[rooms.findIndex(room => room.code == currentRoom)].users.filter((user) => user !== socket.username);
+            console.table(rooms)
+            io.in(currentRoom).emit('update-users', rooms[rooms.findIndex(room => room.code == currentRoom)].users);
+        } catch (err) { console.log(err) }
     })
 });

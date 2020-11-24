@@ -34,4 +34,9 @@ $('#joinRoom').click(() => {
     } else {
         alert('Please Enter A Valid Code And/Or Username!');
     }
-})
+});
+
+socket.on('update-users', (users) => {
+    $('#currentMembers').empty();
+    users.forEach(user => $('#currentMembers').append(`<li>${user}</li>`));
+});
