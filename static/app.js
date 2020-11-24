@@ -29,6 +29,8 @@ $('#joinRoom').click(() => {
         socket.emit('join-room', { room: code, username: name }, (joined) => {
             if (joined) {
                 $('#loginModal').css('display', 'none');
+                $('#roomNumber').text(code);
+                $('#username').text(name);
             }
         });
     } else {
@@ -39,4 +41,17 @@ $('#joinRoom').click(() => {
 socket.on('update-users', (users) => {
     $('#currentMembers').empty();
     users.forEach(user => $('#currentMembers').append(`<li>${user}</li>`));
+});
+
+$('#sendMessage').on('click', () => {
+    socket.emit('message', $('#messageText').val(), (sent) => {
+        if (sent) {
+            $('#messages').append(`<li><b>You </b>${$('#messageText').val()}</li>`);
+            $('#messageText').val('');
+        }
+    });
+})
+
+socket.on('message', (content) => {
+    $('#messages').append(`<li><b>${content.bold} </b>${content.std}</li>`)
 });
