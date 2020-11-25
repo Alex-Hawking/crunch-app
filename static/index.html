@@ -12,9 +12,11 @@
 </head>
 
 <body>
-    <ul id="messages">
-        <li>Welcome To Crunch!</li>
-    </ul>
+    <div id="messageContainer">
+        <ul id="messages">
+            <li>Welcome To Crunch!</li>
+        </ul>
+    </div>
 
     <div id="sidebar">
         <h3 id="currentRoom"><b>Current Room: </b><i><span id="roomNumber"></span></i></h3>
@@ -28,7 +30,8 @@
     <div id="messageContent">
         <ul id="messages"></ul>
         <div id="messageForm">
-            <input id="messageText" autocomplete="off" placeholder="Type Message Here" /><button id="sendMessage">Send</button>
+            <input id="messageText" autocomplete="off" placeholder="Type Message Here" />
+            <button id="sendMessage">Send</button>
         </div>
     </div>
 
@@ -40,6 +43,7 @@
             <input type="text" id="codeInput" placeholder="Enter Room Code" /><br/>
             <input type="text" id="usernameInput" placeholder="Enter Username" /><br/>
             <button id="joinRoom">Join Room</button>
+            <button id="createRoom">Create Room</button>
         </div>
     </div>
 

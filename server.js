@@ -9,13 +9,18 @@ var rooms = [
     { code: '1234', users: [] }
 ];
 
+var rn = () => {
+    var number = String(Math.floor(Math.random() * 10))
+    return number;
+};
+
 app.use(express.static(__dirname + '/static'));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/static/index.html');
 });
 
-http.listen(process.env.PORT || 5000, () => {
+http.listen(process.env.PORT || 3000, () => {
     console.log('Server Started On :*3000');
 });
 
@@ -39,6 +44,17 @@ io.on('connection', (socket) => {
         io.in(data.room).emit('update-users', rooms[rooms.findIndex(room => room.code == data.room)].users);
         io.in(data.room).emit('message', { bold: `${socket.username} has joined!`, std: '' });
     });
+
+    //Create Room 
+
+    socket.on('create-room', (callback) => {
+        var code = `${rn()}${rn()}${rn()}${rn()}`;
+        if (rooms.some(room => room.code !== code)) {
+            rooms.push({ code: code, users: [] });
+            callback(code)
+        }
+
+    })
 
     //Remove User From Room
     socket.on('disconnecting', () => {

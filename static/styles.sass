@@ -44,11 +44,16 @@
 #sendMessage
     width: 8.75%
 
-#messages
-    list-style-type: none
+#messageContainer
     position: absolute
     left: 22%
     top: 5%
-    height: 90%
+    max-height: 85%
+    min-height: 85%
     width: 75%
-    overflow: auto
+    overflow-x: hidden
+    overflow-y: scroll
+
+#messages
+    list-style-type: none
+    
