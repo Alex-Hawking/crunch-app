@@ -32,7 +32,8 @@ io.on('connection', (socket) => {
     socket.on('join-room', (data, callback) => {
         socket.join(data.room);
         socket.username = data.username;
-        rooms[rooms.findIndex(room => room.code == data.room)].users.push(socket.username);
+        socket.currentRoom = data.room;
+        rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users.push(socket.username);
         callback(true);
         console.table(rooms);
         io.in(data.room).emit('update-users', rooms[rooms.findIndex(room => room.code == data.room)].users);
@@ -41,23 +42,17 @@ io.on('connection', (socket) => {
 
     //Remove User From Room
     socket.on('disconnecting', () => {
-        var info = socket.rooms;
-        info.delete(socket.id);
-        var currentRoom = info[Symbol.iterator]().next().value;
         try {
-            rooms[rooms.findIndex(room => room.code == currentRoom)].users = rooms[rooms.findIndex(room => room.code == currentRoom)].users.filter((user) => user !== socket.username);
+            rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users = rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users.filter((user) => user !== socket.username);
             console.table(rooms)
-            io.in(currentRoom).emit('update-users', rooms[rooms.findIndex(room => room.code == currentRoom)].users);
-            io.in(currentRoom).emit('message', { bold: `${socket.username} has left!`, std: '' });
+            io.in(socket.currentRoom).emit('update-users', rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users);
+            io.in(socket.currentRoom).emit('message', { bold: `${socket.username} has left!`, std: '' });
         } catch (err) { console.log(err) }
     });
 
     //Send Messages
     socket.on('message', (message, callback) => {
-        var info = socket.rooms;
-        info.delete(socket.id);
-        var currentRoom = info[Symbol.iterator]().next().value;
-        socket.in(currentRoom).emit('message', { bold: socket.username, std: message });
+        socket.in(socket.currentRoom).emit('message', { bold: socket.username, std: message });
         callback(true)
 
     })
