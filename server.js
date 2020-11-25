@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/static/index.html');
 });
 
-http.listen(3000, () => {
+http.listen(process.env.PORT || 5000, () => {
     console.log('Server Started On :*3000');
 });
 
