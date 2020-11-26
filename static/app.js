@@ -104,6 +104,10 @@ $('#createRoom').click(() => {
     }
 })
 
+$('#leaveRoom').click(() => {
+    location.reload();
+})
+
 socket.on('update-users', (users) => {
     $('#currentMembers').empty();
     users.forEach(user => $('#currentMembers').append(`<li>${user}</li>`));

@@ -5,8 +5,7 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
 var rooms = [
-    { code: '1111', users: [] },
-    { code: '1234', users: [] }
+    { code: '1111', users: [] }
 ];
 
 var rn = () => {
@@ -35,14 +34,18 @@ io.on('connection', (socket) => {
 
     //Add User To Room
     socket.on('join-room', (data, callback) => {
-        socket.join(data.room);
-        socket.username = data.username;
-        socket.currentRoom = data.room;
-        rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users.push(socket.username);
-        callback(true);
-        console.table(rooms);
-        io.in(data.room).emit('update-users', rooms[rooms.findIndex(room => room.code == data.room)].users);
-        io.in(data.room).emit('message', { bold: `${socket.username} has joined!`, std: '' });
+        try {
+            socket.join(data.room);
+            socket.username = data.username;
+            socket.currentRoom = data.room;
+            rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users.push(socket.username);
+            callback(true);
+            console.table(rooms);
+            io.in(data.room).emit('update-users', rooms[rooms.findIndex(room => room.code == data.room)].users);
+            io.in(data.room).emit('message', { bold: `${socket.username} has joined!`, std: '' });
+        } catch (error) {
+            callback(false);
+        }
     });
 
     //Create Room 
@@ -60,9 +63,14 @@ io.on('connection', (socket) => {
     socket.on('disconnecting', () => {
         try {
             rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users = rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users.filter((user) => user !== socket.username);
-            console.table(rooms)
             io.in(socket.currentRoom).emit('update-users', rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users);
             io.in(socket.currentRoom).emit('message', { bold: `${socket.username} has left!`, std: '' });
+
+            if (rooms[rooms.findIndex(room => room.code == socket.currentRoom)].users.length == 0 && socket.currentRoom !== '1111') {
+                rooms.splice([rooms.findIndex(room => room.code == socket.currentRoom)], 1);
+            }
+
+            console.table(rooms)
         } catch (err) { console.log(err) }
     });
 
