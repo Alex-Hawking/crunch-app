@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
             }
 
             console.table(rooms)
-        } catch (err) { console.log(err) }
+        } catch (err) { console.log('Unknown User Left') }
     });
 
     //Send Messages

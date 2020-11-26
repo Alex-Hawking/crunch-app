@@ -7,31 +7,40 @@
 
     <title>Crunch App</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
+    <div id="header">
+        <h1 id="headerTitle">Crunch</h1>
+        <button id="leaveRoom">Leave Room</button>
+    </div>
     <div id="messageContainer">
         <ul id="messages">
-            <li>Welcome To Crunch!</li>
+            <li style="color: #FE5F55; font-weight: 900;">Welcome To Crunch!</li>
         </ul>
     </div>
 
+    <!--
     <div id="sidebar">
         <h3 id="currentRoom"><b>Current Room: </b><i><span id="roomNumber"></span></i></h3>
         <h3 id="usernameDisplay"><b>Username: </b><i><span id="username"></span></i></h3><br>
         <h4>Members:</h4>
         <ul id="currentMembers">
+    -->
 
-        </ul>
-        <button id="leaveRoom">Leave Room</button>
-
+    </ul>
     </div>
-    <div id="messageContent">
-        <ul id="messages"></ul>
+    <div id="messageCreate">
         <div id="messageForm">
-            <input id="messageText" autocomplete="off" placeholder="Type Message Here" />
+            <input id="messageText" autocomplete="off" placeholder="Type Message Here" maxlength="128" />
             <button id="sendMessage">Send</button>
         </div>
     </div>
@@ -39,12 +48,11 @@
     <!--Login Modal-->
     <div id="loginModal">
         <div id="modalContent">
-            <h1>Welcome To Crunch</h1><br/>
-            <span id="codeValidator" style="color: red;">Please Enter A Valid Code</span><br/>
-            <input type="text" id="codeInput" placeholder="Enter Room Code" /><br/>
-            <input type="text" id="usernameInput" placeholder="Enter Username" /><br/>
-            <button id="joinRoom">Join Room</button>
-            <button id="createRoom">Create Room</button>
+            <h1 id="modalTitle">Welcome To Crunch</h1><br/>
+            <input type="text" id="codeInput" class="modalInput" placeholder="Enter Room Code" maxlength="6" /><br/>
+            <input type="text" id="usernameInput" class="modalInput" placeholder="Enter Username" maxlength="12" /><br/>
+            <button id="joinRoom" class="modalButton">Join Room</button>
+            <button id="createRoom" class="modalButton">Create Room</button>
         </div>
     </div>
 

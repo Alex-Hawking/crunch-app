@@ -1,6 +1,86 @@
+//Pallette https://coolors.co/272727-5899e2-f7f9f9-9046cf-f3a712-da4167-fe5f55
+    
+$black: #272727
+$blue: #5899E2
+$white: #F7F9F9
+$purple: #9046CF
+$yellow: #F3A712
+$pink: #DA4167
+$orange: #FE5F55
+$red: #DA4B1B
+$green: #4B7F52
+
 *
     margin: 0
     padding: 0
+
+body
+    background: $white
+
+.modalButton
+    background: $yellow
+    border: none
+    color: $white
+    border-radius: 10px
+    padding: 15px 32px
+    margin: 15px
+    text-align: center
+    text-decoration: none
+    font-size: 16px
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+    transition-duration: 0.5s
+
+.modalButton:hover 
+    background: $orange
+
+.modalInput
+    width: 90%
+    padding: 12px 20px
+    border-radius: 10px
+    margin: 8px 0
+    box-sizing: border-box
+    border: none
+    border: 0.5px solid $pink
+    background: $white
+    outline: none
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+
+#header
+    position: absolute
+    width: 100%
+    height: 10%
+    background: $yellow
+    display: flex
+    align-items: center
+
+#headerTitle
+    position: absolute
+    font-family: 'Montserrat', sans-serif
+    font-weight: 800
+    color: $white
+    font-size: 40px
+    left: 2%
+
+#leaveRoom
+    position: absolute
+    right: 2%
+    background: $orange
+    border: none
+    color: $white
+    border-radius: 10px
+    padding: 10px 27px
+    margin: 15px
+    text-align: center
+    text-decoration: none
+    font-size: 16px
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+    transition-duration: 0.5s
+
+#leaveRoom:hover
+    background: $pink
 
 #loginModal
     display: block 
@@ -11,24 +91,26 @@
     width: 100%
     height: 100%
     overflow: auto
-    background: rgba(0, 0, 0, 0.5)
+    background: rgba(5, 5, 0, 0.8)
     transition-duration: 1s
+    text-align: center
+    overflow: hidden
+
+#modalTitle
+    font-family: 'Montserrat', sans-serif
+    font-size: 72px
+    font-weight: 900
+    background: -webkit-linear-gradient($orange, $yellow)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
 
 #modalContent
-    background: white
-    margin: 15% auto
+    background: $white
+    margin: 5% auto
     padding: 20px
     border: 1px solid black
     border-radius: 10px
     width: 50%
-
-#sidebar
-    position: fixed
-    top: 0
-    left: 0
-    width: 20% 
-    height: 100%
-    background: grey
 
 #messageForm
     position: fixed
@@ -37,7 +119,7 @@
     padding-bottom: 9px
 
 #messageText
-    width: 70% 
+    width: 65% 
     margin-right: 0.5%
     margin-left: 20.25%
 
@@ -47,13 +129,27 @@
 #messageContainer
     position: absolute
     left: 22%
-    top: 5%
-    max-height: 85%
-    min-height: 85%
+    top: 12%
+    max-height: 80%
+    min-height: 80%
     width: 75%
-    overflow-x: hidden
     overflow-y: scroll
 
 #messages
     list-style-type: none
-    
+    font-family: 'Montserrat', sans-serif
+
+#messages li
+    padding: 5px
+
+.mM
+    color: $black
+    font-weight: 500
+
+.mB
+    color: $pink
+    font-weight: 700
+
+.mY
+    color: $yellow
+    font-weight: 700

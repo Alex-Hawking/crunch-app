@@ -8,18 +8,15 @@ $('#codeInput').keyup(() => {
     if ($('#codeInput').val().length == 4) {
         socket.emit('check-room', $('#codeInput').val(), (codeIsValid) => {
             if (codeIsValid) {
-                $('#codeValidator').text('Code Is Valid');
-                $('#codeValidator').css('color', 'green');
+                $('#codeInput').css('color', '#4B7F52');
                 validCode = true;
             } else {
-                $('#codeValidator').text('Please Enter A Valid Code');
-                $('#codeValidator').css('color', 'red');
+                $('#codeInput').css('color', '#DA4B1B');
                 validCode = false;
             }
         })
     } else {
-        $('#codeValidator').text('Please Enter A Valid Code');
-        $('#codeValidator').css('color', 'red');
+        $('#codeInput').css('color', '#DA4B1B');
         validCode = false;
     }
 })
@@ -70,7 +67,8 @@ function createRoom() {
 function sendMessage() {
     socket.emit('message', $('#messageText').val(), (sent) => {
         if (sent) {
-            $('#messages').append(`<li><b>You </b>${$('#messageText').val()}</li>`);
+            $('#messages').append(`<li><span class="mY">You </span><span class="mM">${$('#messageText').val()}</span></li>`);
+            $('#messageContainer').scrollTop($('#messageContainer').scrollHeight);
             $('#messageText').val('');
         }
     });
@@ -124,6 +122,6 @@ $('#messageText').keypress((e) => {
 });
 
 socket.on('message', (content) => {
-    $('#messages').append(`<li><b>${content.bold} </b>${content.std}</li>`);
-    $('#messages').scrollTop($('#messages')[0].scrollHeight - $('#messages')[0].clientHeight);
+    $('#messages').append(`<li><span class="mB">${content.bold} </span><span class="mM">${content.std}</span></li>`);
+    $('#messageContainer').scrollTop($('#messageContainer').scrollHeight);
 });
