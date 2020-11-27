@@ -93,7 +93,8 @@ body
     height: 100%
     overflow: auto
     background: rgba(5, 5, 0, 0.8)
-    transition-duration: 1s
+    backdrop-filter: blur(10px)
+    transition: 1s
     text-align: center
     overflow: hidden
 
@@ -178,3 +179,9 @@ body
     background: -webkit-linear-gradient($orange, $yellow)
     -webkit-background-clip: text
     -webkit-text-fill-color: transparent
+
+#currentMembers
+    color: $white
+    
+#currentMembers li
+    list-style-type: circle

@@ -97,8 +97,10 @@ body {
   height: 100%;
   overflow: auto;
   background: rgba(5, 5, 0, 0.8);
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  -webkit-transition: 1s;
+  transition: 1s;
   text-align: center;
   overflow: hidden;
 }
@@ -198,5 +200,13 @@ body {
   background: -webkit-linear-gradient(#FE5F55, #F3A712);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+#currentMembers {
+  color: #F7F9F9;
+}
+
+#currentMembers li {
+  list-style-type: circle;
 }
 /*# sourceMappingURL=styles.css.map */
