@@ -28,16 +28,14 @@
         </ul>
     </div>
 
-    <!--
-    <div id="sidebar">
-        <h3 id="currentRoom"><b>Current Room: </b><i><span id="roomNumber"></span></i></h3>
-        <h3 id="usernameDisplay"><b>Username: </b><i><span id="username"></span></i></h3><br>
-        <h4>Members:</h4>
-        <ul id="currentMembers">
-    -->
 
-    </ul>
+    <div id="sidebar">
+        <h3 id="currentRoom"><span class="sidebarClass">Current Room: </span><br><span id="roomNumber" class="sidebarInfo"></span></h3>
+        <h3 id="usernameDisplay"><span class="sidebarClass">Username: <br></span><span id="username" class="sidebarInfo"></span></h3><br>
+        <h4>Members:</h4>
+        <ul id="currentMembers"></ul>
     </div>
+
     <div id="messageCreate">
         <div id="messageForm">
             <input id="messageText" autocomplete="off" placeholder="Type Message Here" maxlength="128" />

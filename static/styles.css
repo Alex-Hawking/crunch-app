@@ -12,7 +12,7 @@ body {
   border: none;
   color: #F7F9F9;
   border-radius: 10px;
-  padding: 15px 32px;
+  padding: 2vw 3vw;
   margin: 15px;
   text-align: center;
   text-decoration: none;
@@ -105,7 +105,7 @@ body {
 
 #modalTitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 72px;
+  font-size: 8vw;
   font-weight: 900;
   background: -webkit-linear-gradient(#FE5F55, #F3A712);
   -webkit-background-clip: text;
@@ -114,7 +114,7 @@ body {
 
 #modalContent {
   background: #F7F9F9;
-  margin: 5% auto;
+  margin: 3% auto;
   padding: 20px;
   border: 1px solid black;
   border-radius: 10px;
@@ -170,5 +170,33 @@ body {
 .mY {
   color: #F3A712;
   font-weight: 700;
+}
+
+#sidebar {
+  position: absolute;
+  left: 0%;
+  width: 20%;
+  top: 10%;
+  height: 90%;
+  background: #272727;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sidebarClass {
+  color: #F7F9F9;
+  padding: 10px;
+}
+
+#currentRoom {
+  padding-top: 10px;
+}
+
+.sidebarInfo {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 10px;
+  background: -webkit-linear-gradient(#FE5F55, #F3A712);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 /*# sourceMappingURL=styles.css.map */
