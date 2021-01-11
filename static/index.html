@@ -23,22 +23,18 @@
         <button id="leaveRoom">Leave Room</button>
     </div>
     <div id="messageContainer">
-        <ul id="messages">
-            <li style="color: #FE5F55; font-weight: 900;">Welcome To Crunch!</li>
+        <ul id="messages"></ul>
+    </div>
+
+    <div id="sidebarContainer">
+        <button id="roomNumber"></button>
+        <ul id="currentMembers">
+            <li id="currentMembersHeader">Current Members</li>
         </ul>
+        <h3 id="username"></h3>
     </div>
 
-
-    <div id="sidebar">
-        <div>
-            <h3 id="currentRoom"><span class="sidebarClass">Current Room: </span><br><span id="roomNumber" class="sidebarInfo"></span></h3>
-            <h3 id="usernameDisplay"><span class="sidebarClass">Username: <br></span><span id="username" class="sidebarInfo"></span></h3><br>
-        </div>
-        <h4 class="sidebarClass">Members:</h4>
-        <ul id="currentMembers"></ul>
-    </div>
-
-    <div id="messageCreate">
+    <div id="messageFormContainer">
         <div id="messageForm">
             <input id="messageText" autocomplete="off" placeholder="Type Message Here" maxlength="128" />
             <button id="sendMessage">Send</button>

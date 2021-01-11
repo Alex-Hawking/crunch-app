@@ -2,6 +2,16 @@ var socket = io();
 
 var validCode = false;
 
+var roomNumberColours = [
+    '5899E2',
+    '9046CF',
+    '272727',
+    '4B7F52',
+    'DA4167',
+    'FE5F55',
+    'DA4B1B'
+]
+
 //Code Validation
 
 $('#codeInput').keyup(() => {
@@ -65,15 +75,14 @@ function createRoom() {
 //Send Messages
 
 function sendMessage() {
-    socket.emit('message', $('#messageText').val(), (sent) => {
+    socket.emit('message', $('#messageText').val().toString(), (sent) => {
         if (sent) {
-            $('#messages').append(`<li><span class="mY">You </span><span class="mM">${$('#messageText').val()}</span></li>`);
+            $('#messages').append(`<li>You ${$('#messageText').val()}</li>`);
             $('#messageContainer').scrollTop($('#messageContainer').scrollHeight);
             $('#messageText').val('');
         }
     });
 }
-
 
 $('#joinRoom').click(() => {
     joinRequest();
@@ -122,6 +131,11 @@ $('#messageText').keypress((e) => {
 });
 
 socket.on('message', (content) => {
-    $('#messages').append(`<li><span class="mB">${content.bold} </span><span class="mM">${content.std}</span></li>`);
-    $('#messageContainer').scrollTop($('#messageContainer').scrollHeight);
+    $('#messages').append(`<li>${content.bold} ${content.std}</li>`);
+    $('#messages').scrollTop($('#messageContainer').scrollHeight);
 });
+
+$(document).ready(() => {
+    console.log('test')
+        //$('#roomNumber').css('background', `${roomNumberColours[Math.floor((Math.random() * roomNumberColours.length))]}`)
+})
