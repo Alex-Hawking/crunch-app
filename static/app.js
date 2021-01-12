@@ -1,6 +1,7 @@
 var socket = io();
 
 var validCode = false;
+var messages = document.getElementById('messages')
 
 //Code Validation
 
@@ -129,7 +130,8 @@ $('#messageText').keypress((e) => {
 
 socket.on('message', (content) => {
     $('#messages').append(`<li>${content.bold} ${content.std}</li>`);
-    $('#messages').scrollTop($('#messageContainer').scrollHeight);
+    $('#messages').scrollTop = $('#messages').height();
+    console.log('scroll')
 });
 
 $(document).ready(() => {

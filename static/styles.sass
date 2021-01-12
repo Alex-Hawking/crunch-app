@@ -48,6 +48,21 @@ body
     font-family: 'Montserrat', sans-serif
     font-weight: 500
 
+::-webkit-scrollbar 
+    width: 7.5px
+    margin: 5px
+
+::-webkit-scrollbar-track 
+    background: $white
+
+::-webkit-scrollbar-thumb 
+    background: $pink
+    transition-duration: 0.5s
+
+::-webkit-scrollbar-thumb:hover 
+    background: $red
+
+
 #header
     position: absolute
     width: 100%
@@ -157,8 +172,11 @@ body
 
 #messageContainer
     position: fixed
-    top: 10%
-    height: 80%
+    top: 12.5%
+    height: 75%
+    margin-left: 2.5%
+    margin-right: 2.5%
+    margin-bottom: 2.5%
     left: 20%
     width: 80%
     overflow-y: scroll
@@ -172,14 +190,51 @@ body
 
 #messages
     list-style-type: none
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+    word-wrap: break-word
     margin: 2.5%
+    
 
 #messages li
-    width: 100%
-    background: green
-    padding: 10px 
+    margin: 0.5vw
+
+#messageText 
+    position: absolute
+    top: 50%
+    -ms-transform: translateY(-50%)
+    transform: translateY(-50%)
+    left: 2.5%
+    width: 82.5% 
+    padding: 0.5vw
     border-radius: 10px
-    margin-bottom: 10px
+    box-sizing: border-box
+    border: none
+    border: 0.5px solid $pink
+    background: $white
+    outline: none
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+    font-size: 0.75vw
+
+#sendMessage
+    position: absolute
+    top: 50%
+    -ms-transform: translateY(-50%)
+    transform: translateY(-50%)
+    right: 2.5%
+    width: 10%
+    font-size: 0.75vw
+    padding: 0.8%
+    background: $orange
+    border: none
+    color: $white
+    border-radius: 10px
+    text-align: center
+    text-decoration: none
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+    transition-duration: 0.5s
 
 @media screen and (max-width: 950px)
     #sidebarContainer
@@ -235,3 +290,12 @@ body
         background: -webkit-linear-gradient($orange, $pink)
         -webkit-background-clip: text
         -webkit-text-fill-color: transparent
+
+    #messageText 
+        width: 95%
+        padding: 2vw
+
+    #sendMessage
+        display: none
+
+    
