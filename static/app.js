@@ -2,16 +2,6 @@ var socket = io();
 
 var validCode = false;
 
-var roomNumberColours = [
-    '5899E2',
-    '9046CF',
-    '272727',
-    '4B7F52',
-    'DA4167',
-    'FE5F55',
-    'DA4B1B'
-]
-
 //Code Validation
 
 $('#codeInput').keyup(() => {
@@ -82,6 +72,13 @@ function sendMessage() {
             $('#messageText').val('');
         }
     });
+}
+
+function copyRoomNumber() {
+    $("<textarea/>").appendTo("body").val(`${$('#roomNumber').text()}`).select().each(() => {
+        document.execCommand('copy');
+    }).remove();
+    alert(`Copied room number: ${$('#roomNumber').text()}`)
 }
 
 $('#joinRoom').click(() => {

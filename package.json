@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Alex-Hawking/crunch-app#readme",
   "dependencies": {
+    "clipboardy": "^2.3.0",
     "express": "^4.17.1",
     "socket.io": "^3.0.3"
   }
