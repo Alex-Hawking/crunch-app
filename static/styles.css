@@ -317,7 +317,8 @@ body {
   }
   #messageText {
     width: 95%;
-    padding: 2vw;
+    font-size: 3vw;
+    padding: 1vw;
   }
   #sendMessage {
     display: none;
