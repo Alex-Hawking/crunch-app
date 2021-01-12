@@ -242,7 +242,8 @@ body {
     margin-bottom: 0;
     margin-left: 5vw;
     position: absolute;
-    right: 0;
+    text-align: right;
+    padding-right: 2vw;
     top: 50%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
