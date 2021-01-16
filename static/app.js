@@ -68,7 +68,7 @@ function createRoom() {
 function sendMessage() {
     socket.emit('message', $('#messageText').val().toString(), (sent) => {
         if (sent) {
-            $('#messages').append(`<li>You ${$('#messageText').val()}</li>`);
+            $('#messages').append(`<li><span id="messageSent">You</span> ${$('#messageText').val()}</li>`);
             $('#messageContainer').scrollTop($('#messageContainer').scrollHeight);
             $('#messageText').val('');
         }
@@ -129,8 +129,8 @@ $('#messageText').keypress((e) => {
 });
 
 socket.on('message', (content) => {
-    $('#messages').append(`<li>${content.bold} ${content.std}</li>`);
-    $('#messages').scrollTop = $('#messages').height();
+    $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ${content.std}</li>`);
+    $("#messages").animate({ scrollTop: $("#messages")[0].scrollHeight }, 1000)
     console.log('scroll')
 });
 

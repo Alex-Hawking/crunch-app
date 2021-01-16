@@ -199,6 +199,13 @@ body {
   overflow-y: scroll;
 }
 
+#currentMembers {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1vw;
+  font-weight: 800;
+  word-wrap: break-word;
+}
+
 #messageFormContainer {
   position: fixed;
   left: 20%;
@@ -213,6 +220,7 @@ body {
   font-weight: 500;
   word-wrap: break-word;
   margin: 2.5%;
+  overflow-y: scroll;
 }
 
 #messages li {
@@ -236,7 +244,7 @@ body {
   outline: none;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 0.75vw;
+  font-size: 1vw;
 }
 
 #sendMessage {
@@ -246,7 +254,7 @@ body {
           transform: translateY(-50%);
   right: 2.5%;
   width: 10%;
-  font-size: 0.75vw;
+  font-size: 1vw;
   padding: 0.8%;
   background: #FE5F55;
   border: none;
@@ -258,6 +266,20 @@ body {
   font-weight: 500;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
+}
+
+#messageSent {
+  font-weight: 900;
+  background: -webkit-linear-gradient(#5899E2, #9046CF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#messageReceived {
+  font-weight: 900;
+  background: -webkit-linear-gradient(#FE5F55, #DA4167);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @media screen and (max-width: 950px) {
