@@ -140,13 +140,3 @@ socket.on('message', (content) => {
     $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ` + (` ${content.std}`).replace(/</g, '&lt;') + `</li`);
     autoScroll()
 });
-
-$(document).ready(() => {
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        if ($("#messageText").is(":focus")) {
-            $('sidebarContainer').css('display', 'none')
-        } else {
-            $('sidebarContainer').css('display', 'block')
-        }
-    }
-})
