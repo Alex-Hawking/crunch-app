@@ -22,6 +22,12 @@ $('#codeInput').keyup(() => {
     }
 })
 
+function autoScroll() {
+    var messages = document.getElementById('messageContainer')
+    $("#messageContainer").scrollTop(messages.scrollHeight)
+    console.log('scroll')
+}
+
 //Join Room
 
 function joinRoom(code, name) {
@@ -69,8 +75,8 @@ function sendMessage() {
     socket.emit('message', $('#messageText').val().toString(), (sent) => {
         if (sent) {
             $('#messages').append(`<li><span id="messageSent">You</span> ${$('#messageText').val()}</li>`);
-            $('#messageContainer').scrollTop($('#messageContainer').scrollHeight);
             $('#messageText').val('');
+            autoScroll()
         }
     });
 }
@@ -130,8 +136,7 @@ $('#messageText').keypress((e) => {
 
 socket.on('message', (content) => {
     $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ${content.std}</li>`);
-    $("#messages").animate({ scrollTop: $("#messages")[0].scrollHeight }, 1000)
-    console.log('scroll')
+    autoScroll()
 });
 
 $(document).ready(() => {
