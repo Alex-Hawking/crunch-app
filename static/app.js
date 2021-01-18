@@ -72,13 +72,15 @@ function createRoom() {
 //Send Messages
 
 function sendMessage() {
-    socket.emit('message', $('#messageText').val().toString(), (sent) => {
-        if (sent) {
-            $('#messages').append(`<li><span id="messageSent">You</span> ${$('#messageText').val()}</li>`);
-            $('#messageText').val('');
-            autoScroll()
-        }
-    });
+    if ($('#messageText').val().length) {
+        socket.emit('message', $('#messageText').val().toString(), (sent) => {
+            if (sent) {
+                $('#messages').append(`<li><span id="messageSent">You</span>` + (` ${$('#messageText').val()}`).replace(/</g, '&lt;') + `</li>`);
+                $('#messageText').val('');
+                autoScroll()
+            }
+        });
+    }
 }
 
 function copyRoomNumber() {
@@ -135,11 +137,16 @@ $('#messageText').keypress((e) => {
 });
 
 socket.on('message', (content) => {
-    $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ${content.std}</li>`);
+    $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ` + (` ${content.std}`).replace(/</g, '&lt;') + `</li`);
     autoScroll()
 });
 
 $(document).ready(() => {
-    console.log('test')
-        //$('#roomNumber').css('background', `${roomNumberColours[Math.floor((Math.random() * roomNumberColours.length))]}`)
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        if ($("#messageText").is(":focus")) {
+            $('sidebarContainer').css('display', 'none')
+        } else {
+            $('sidebarContainer').css('display', 'block')
+        }
+    }
 })

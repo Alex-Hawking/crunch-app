@@ -7,6 +7,10 @@ body {
   background: #F7F9F9;
 }
 
+script {
+  display: block !important;
+}
+
 .modalButton {
   background: #F3A712;
   border: none;
