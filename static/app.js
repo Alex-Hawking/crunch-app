@@ -3,6 +3,10 @@ var socket = io();
 var validCode = false;
 var messages = document.getElementById('messages')
 
+$(window).on('load', () => {
+    $('#preloader').fadeOut('slow');
+});
+
 //Code Validation
 
 $('#codeInput').keyup(() => {

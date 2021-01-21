@@ -65,6 +65,16 @@ script {
   background: #DA4B1B;
 }
 
+#preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: #F3A712;
+}
+
 #header {
   position: absolute;
   width: 100%;
