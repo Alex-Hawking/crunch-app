@@ -274,8 +274,8 @@ script {
   background: #F7F9F9;
   outline: none;
   font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
   font-weight: 500;
-  font-size: 1vw;
 }
 
 #sendMessage {
@@ -285,7 +285,7 @@ script {
           transform: translateY(-50%);
   right: 2.5%;
   width: 10%;
-  font-size: 1vw;
+  font-size: 1rem;
   padding: 0.8%;
   background: #FE5F55;
   border: none;
