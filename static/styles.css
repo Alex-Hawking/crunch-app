@@ -201,6 +201,46 @@ script {
   cursor: pointer;
 }
 
+#usersTrigger {
+  margin: 1%;
+  background: #9046CF;
+  border: none;
+  color: #F7F9F9;
+  border-radius: 10px;
+  padding: 5% 15%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.25vw;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+#usersTrigger:hover {
+  cursor: pointer;
+  background: #5899E2;
+}
+
+#currentMembers {
+  display: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1vw;
+  font-weight: 500;
+  word-wrap: break-word;
+  background: #F3A712;
+  padding: 5% 15%;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#currentMembers li {
+  list-style-type: none;
+  color: #F7F9F9;
+}
+
 #username {
   position: absolute;
   bottom: 10%;
@@ -225,17 +265,6 @@ script {
   left: 20%;
   width: 80%;
   overflow: auto;
-}
-
-#currentMembers {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1vw;
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-#currentMembers li {
-  padding-bottom: 1.5vw;
 }
 
 #messageFormContainer {
@@ -336,7 +365,7 @@ script {
     width: 100%;
     overflow-y: scroll;
   }
-  #currentMembers {
+  #usersTrigger {
     display: none;
   }
   #roomNumber {

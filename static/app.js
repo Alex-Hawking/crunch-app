@@ -26,6 +26,10 @@ $('#codeInput').keyup(() => {
     }
 })
 
+function toggleUsers() {
+    $('#currentMembers').toggle('fast', 'swing')
+}
+
 function autoScroll() {
     var messages = document.getElementById('messageContainer')
     $("#messageContainer").scrollTop(messages.scrollHeight)
