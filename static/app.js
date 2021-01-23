@@ -183,3 +183,7 @@ socket.on('message', (content) => {
     $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ` + (` ${content.std}`).replace(/</g, '&lt;') + `</li`);
     autoScroll()
 });
+
+socket.on('disconnect', () => {
+    location.reload()
+});
