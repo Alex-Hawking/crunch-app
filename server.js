@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http, { 'pingInterval': 2000, 'pingTimeout': 5000 });
 
 var rooms = [
     { code: '1111', users: [] }
@@ -80,4 +80,8 @@ io.on('connection', (socket) => {
         callback(true)
 
     })
+
+    socket.on("disconnect", function() {
+        location.reload()
+    });
 });
