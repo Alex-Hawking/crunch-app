@@ -343,6 +343,13 @@ script {
   -webkit-text-fill-color: transparent;
 }
 
+#bot {
+  font-weight: 900;
+  background: -webkit-linear-gradient(#4B7F52, #5899E2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @media screen and (max-width: 950px) {
   #sidebarContainer {
     position: fixed;

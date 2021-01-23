@@ -33,7 +33,6 @@ function toggleUsers() {
 function autoScroll() {
     var messages = document.getElementById('messageContainer')
     $("#messageContainer").scrollTop(messages.scrollHeight)
-    console.log('scroll')
 }
 
 //Join Room
@@ -78,16 +77,49 @@ function createRoom() {
 }
 
 //Send Messages
-
 function sendMessage() {
     if ($('#messageText').val().length) {
-        socket.emit('message', $('#messageText').val().toString(), (sent) => {
-            if (sent) {
-                $('#messages').append(`<li><span id="messageSent">You</span>` + (` ${$('#messageText').val()}`).replace(/</g, '&lt;') + `</li>`);
-                $('#messageText').val('');
-                autoScroll()
+        //Chatbot
+        if ($('#messageText').val().charAt(0) == '!') {
+            var command = $('#messageText').val().substring(1)
+            $('#messages').append(`<li><span id="messageSent">You</span>` + (` ${$('#messageText').val()}`).replace(/</g, '&lt;') + `</li>`);
+            if (command == 'help') {
+                $('#messages').append(`<li><span id="bot">Bot</span> ` + 'Try the following commands:<br><b>!members</b>: lists chat members<br><b>!leave</b>: leave the room<br><b>!room</b>: displays the current room number<br><b>!username</b>: displays your current handle<br><b>!help</b>: reveals this message</li>');
+            } else if (command == 'members') {
+                var members = $('#currentMembers>li').toArray().map(item => $(item).html());
+                var message = `<li><span id="bot">Bot</span> This chat has <b>${members.length}</b> member/s:`
+                for (var member in members) {
+                    message = message + `<br><i>${members[member]}<i>`
+                }
+                console.log(message)
+                $('#messages').append(message + '</li>');
+
+            } else if (command == 'leave') {
+                location.reload();
+            } else if (command == 'room') {
+                $('#messages').append(`<li><span id="bot">Bot</span> You are in room <b>${$('#roomNumber').text()}</b>.</li>`);
+            } else if (command == 'username') {
+                $('#messages').append(`<li><span id="bot">Bot</span> Your current handle is <b>${$('#username').text()}</b>.</li>`);
+            } else if (command == 'hi' || command == 'hey' || command == 'hello') {
+                $('#messages').append(`<li><span id="bot">Bot</span> Hello.</li>`);
+            } else if (command == 'joke') {
+                $('#messages').append(`<li><span id="bot">Bot</span> You are the joke.</li>`);
+            } else {
+                $('#messages').append(`<li><span id="bot">Bot</span> ` + 'Unrecognised command! Please try again (use !help for help).</li>');
             }
-        });
+
+            $('#messageText').val('');
+            autoScroll()
+        } else {
+            socket.emit('message', $('#messageText').val().toString(), (sent) => {
+                if (sent) {
+                    $('#messages').append(`<li><span id="messageSent">You</span>` + (` ${$('#messageText').val()}`).replace(/</g, '&lt;') + `</li>`);
+                    $('#messageText').val('');
+                    autoScroll()
+                }
+
+            });
+        }
     }
 }
 
