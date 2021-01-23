@@ -80,8 +80,4 @@ io.on('connection', (socket) => {
         callback(true)
 
     })
-
-    socket.on("disconnect", function() {
-        location.reload()
-    });
 });
