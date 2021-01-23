@@ -238,6 +238,7 @@ script {
 
 #currentMembers li {
   list-style-type: none;
+  margin: 5%;
   color: #F7F9F9;
 }
 
@@ -378,7 +379,7 @@ script {
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
     padding: 2vw;
-    font-size: 4vw;
+    font-size: 3vh;
   }
   #username {
     padding: 0;
@@ -391,7 +392,7 @@ script {
     top: 50%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
-    font-size: 6vw;
+    font-size: 3vh;
     font-weight: 800;
     background: -webkit-linear-gradient(#FE5F55, #DA4167);
     -webkit-background-clip: text;
@@ -399,7 +400,7 @@ script {
   }
   #messageText {
     width: 95%;
-    font-size: 5vw;
+    font-size: 3vh;
     padding: 1.5vw;
   }
   #sendMessage {
