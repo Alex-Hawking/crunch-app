@@ -84,7 +84,7 @@ function sendMessage() {
             var command = $('#messageText').val().substring(1)
             $('#messages').append(`<li><span id="messageSent">You</span>` + (` ${$('#messageText').val()}`).replace(/</g, '&lt;') + `</li>`);
             if (command == 'help') {
-                $('#messages').append(`<li><span id="bot">Bot</span> ` + 'Try the following commands:<br><b>!members</b>: lists chat members<br><b>!leave</b>: leave the room<br><b>!room</b>: displays the current room number<br><b>!username</b>: displays your current handle<br><b>!help</b>: reveals this message</li>');
+                $('#messages').append(`<li><span id="bot">Bot</span> ` + 'Try the following commands:<br><b>!members</b>: lists chat members<br><b>!leave</b>: leave the room<br><b>!clear</b>: clears chat history from your device<br><b>!room</b>: displays the current room number<br><b>!username</b>: displays your current handle<br><b>!help</b>: reveals this message</li>');
             } else if (command == 'members') {
                 var members = $('#currentMembers>li').toArray().map(item => $(item).html());
                 var message = `<li><span id="bot">Bot</span> This chat has <b>${members.length}</b> member/s:`
@@ -100,6 +100,9 @@ function sendMessage() {
                 $('#messages').append(`<li><span id="bot">Bot</span> You are in room <b>${$('#roomNumber').text()}</b>.</li>`);
             } else if (command == 'username') {
                 $('#messages').append(`<li><span id="bot">Bot</span> Your current handle is <b>${$('#username').text()}</b>.</li>`);
+            } else if (command == 'clear') {
+                $('#messages').empty()
+                $('#messages').append(`<li><span id="bot">Bot</span> Chat cleared.</li>`);
             } else if (command == 'hi' || command == 'hey' || command == 'hello') {
                 $('#messages').append(`<li><span id="bot">Bot</span> Hello.</li>`);
             } else if (command == 'joke') {
