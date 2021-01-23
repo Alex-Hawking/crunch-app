@@ -107,7 +107,7 @@ script {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   color: #F7F9F9;
-  font-size: 5vh;
+  font-size: 4.5vh;
   left: 2%;
 }
 
@@ -118,10 +118,10 @@ script {
   border: none;
   color: #F7F9F9;
   border-radius: 10px;
-  padding: 10px 27px;
+  padding: 10px 25px;
   text-align: center;
   text-decoration: none;
-  font-size: 2vh;
+  font-size: 1.5vh;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   -webkit-transition-duration: 0.5s;
