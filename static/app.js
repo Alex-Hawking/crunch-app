@@ -79,9 +79,11 @@ function createRoom() {
 //Send Messages
 function sendMessage() {
     if ($('#messageText').val().length) {
+
         //Chatbot
         if ($('#messageText').val().charAt(0) == '!') {
             var command = $('#messageText').val().substring(1)
+            console.log(command.substring(0, 5))
             $('#messages').append(`<li><span id="messageSent">You</span>` + (` ${$('#messageText').val()}`).replace(/</g, '&lt;') + `</li>`);
             if (command == 'help') {
                 $('#messages').append(`<li><span id="bot">Bot</span> ` + 'Try the following commands:<br><b>!members</b>: lists chat members<br><b>!leave</b>: leave the room<br><b>!clear</b>: clears chat history from your device<br><b>!room</b>: displays the current room number<br><b>!username</b>: displays your current handle<br><b>!help</b>: reveals this message</li>');
@@ -106,11 +108,28 @@ function sendMessage() {
             } else if (command.substring(0, 4) == 'link') {
                 var link = command.substring(5, command.length)
                 socket.emit('link', link, (sent) => {
-                    $('#messages').append(`<li><span id="bot">Bot</span >Sent link: <a href="${link}" target="_blank">${link}</a>.</li>`);
-                    $('#messages').append(`<li><span id="messageSent">You</span> <a href="${link}" target="_blank">${link}</a></li>`);
-                    $('#messageText').val('');
-                    autoScroll()
+                    if (sent) {
+                        $('#messages').append(`<li><span id="bot">Bot</span >Sent link: <a href="${link}" target="_blank">${link}</a>.</li>`);
+                        $('#messages').append(`<li><span id="messageSent">You</span> <a href="${link}" target="_blank">${link}</a></li>`);
+                        $('#messageText').val('');
+                        autoScroll()
+                    }
                 })
+            } else if (command.substring(0, 5) == 'image') {
+                var imageLink = command.substring(6, command.length)
+                if (imageLink.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                    socket.emit('image', imageLink, (sent) => {
+                        if (sent) {
+                            $('#messages').append(`<li><span id="bot">Bot</span> Sent image: <a href="${imageLink}" target="_blank">${imageLink}</a>.</li>`);
+                            $('#messages').append(`<li><span id="messageSent">You</span><br><img src="${imageLink}" style="max-width: 90%; height: auto;">`);
+                            $('#messageText').val('');
+                            autoScroll()
+                        }
+                    })
+                } else {
+                    $('#messages').append(`<li><span id="bot">Bot</span> Please enter a valid image link.</li>`);
+                }
+
             } else if (command == 'hi' || command == 'hey' || command == 'hello') {
                 $('#messages').append(`<li><span id="bot">Bot</span> Hello.</li>`);
             } else if (command == 'joke') {
@@ -194,6 +213,10 @@ socket.on('message', (content) => {
 
 socket.on('link', (content) => {
     $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> <a href="${content.link}" target="_blank">${content.link}</a></li>`);
-    $('#messageText').val('');
+    autoScroll()
+});
+
+socket.on('image', (content) => {
+    $('#messages').append(`<li><span id="messageReceived">${content.bold}</span><br><img src="${content.link}" style="max-width: 90%; height: auto;">`);
     autoScroll()
 });
