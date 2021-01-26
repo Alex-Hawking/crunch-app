@@ -80,4 +80,11 @@ io.on('connection', (socket) => {
         callback(true)
 
     })
+
+    //Link
+    socket.on('link', (link, callback) => {
+        console.log(link)
+        socket.in(socket.currentRoom).emit('link', { bold: socket.username, link: link });
+        callback(true)
+    })
 });

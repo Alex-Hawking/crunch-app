@@ -103,6 +103,14 @@ function sendMessage() {
             } else if (command == 'clear') {
                 $('#messages').empty()
                 $('#messages').append(`<li><span id="bot">Bot</span> Chat cleared.</li>`);
+            } else if (command.substring(0, 4) == 'link') {
+                var link = command.substring(5, command.length)
+                socket.emit('link', link, (sent) => {
+                    $('#messages').append(`<li><span id="bot">Bot</span >Sent link: <a href="${link}" target="_blank">${link}</a>.</li>`);
+                    $('#messages').append(`<li><span id="messageSent">You</span> <a href="${link}" target="_blank">${link}</a></li>`);
+                    $('#messageText').val('');
+                    autoScroll()
+                })
             } else if (command == 'hi' || command == 'hey' || command == 'hello') {
                 $('#messages').append(`<li><span id="bot">Bot</span> Hello.</li>`);
             } else if (command == 'joke') {
@@ -181,5 +189,11 @@ $('#messageText').keypress((e) => {
 
 socket.on('message', (content) => {
     $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> ` + (` ${content.std}`).replace(/</g, '&lt;') + `</li`);
+    autoScroll()
+});
+
+socket.on('link', (content) => {
+    $('#messages').append(`<li><span id="messageReceived">${content.bold}</span> <a href="${content.link}" target="_blank">${content.link}</a></li>`);
+    $('#messageText').val('');
     autoScroll()
 });
