@@ -130,10 +130,19 @@ function sendMessage() {
                     $('#messages').append(`<li><span id="bot">Bot</span> Please enter a valid image link.</li>`);
                 }
 
+            } else if (command == 'date' || command == 'time' || command == 'day') {
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+                var d = new Date()
+                $('#messages').append(`<li><span id="bot">Bot</span> It is ${d.getHours()}:${d.getMinutes()} on ${days[d.getDay()]} the ${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}</li>`);
+            } else if (command.substring(0, 7) == 'randnum') {
+                var number = command.substring(8, command.length)
+                $('#messages').append(`<li><span id="bot">Bot</span> Random Number ${Math.floor(Math.random() * (parseInt(number) + 1))}</li>`);
             } else if (command == 'hi' || command == 'hey' || command == 'hello') {
                 $('#messages').append(`<li><span id="bot">Bot</span> Hello.</li>`);
             } else if (command == 'joke') {
                 $('#messages').append(`<li><span id="bot">Bot</span> You are the joke.</li>`);
+            } else if (command == 'name' || command == 'who') {
+                $('#messages').append(`<li><span id="bot">Bot</span> I am bot.</li>`);
             } else {
                 $('#messages').append(`<li><span id="bot">Bot</span> ` + 'Unrecognised command! Please try again (use !help for help).</li>');
             }
