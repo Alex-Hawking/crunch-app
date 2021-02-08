@@ -3,6 +3,8 @@ var socket = io();
 var validCode = false;
 var messages = document.getElementById('messages')
 
+var lastMessage = ''
+
 $(window).on('load', () => {
     $('#preloader').fadeOut('slow');
 });
@@ -79,6 +81,7 @@ function createRoom() {
 //Send Messages
 function sendMessage() {
     if ($('#messageText').val().length) {
+        lastMessage = $('#messageText').val()
 
         //Chatbot
         if ($('#messageText').val().charAt(0) == '!') {
@@ -136,7 +139,10 @@ function sendMessage() {
                 $('#messages').append(`<li><span id="bot">Bot</span> It is ${d.getHours()}:${d.getMinutes()} on ${days[d.getDay()]} the ${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}</li>`);
             } else if (command.substring(0, 7) == 'randnum') {
                 var number = command.substring(8, command.length)
-                $('#messages').append(`<li><span id="bot">Bot</span> Random Number ${Math.floor(Math.random() * (parseInt(number) + 1))}</li>`);
+                $('#messages').append(`<li><span id="bot">Bot</span> Random Number: ${Math.floor(Math.random() * (parseInt(number) + 1))}</li>`);
+            } else if (command.substring(0, 8) == 'coinflip') {
+                var sides = ['Heads', 'Tails']
+                $('#messages').append(`<li><span id="bot">Bot</span> Landed on: ${sides[Math.floor(Math.random() * 2)]}</li>`);
             } else if (command == 'hi' || command == 'hey' || command == 'hello') {
                 $('#messages').append(`<li><span id="bot">Bot</span> Hello.</li>`);
             } else if (command == 'joke') {
@@ -209,9 +215,16 @@ $('#sendMessage').on('click', () => {
     sendMessage();
 })
 
-$('#messageText').keypress((e) => {
-    if (e.key === "Enter") {
-        sendMessage();
+document.getElementById('messageText').addEventListener("keydown", (e) => {
+    switch (e.key) {
+        case "Enter":
+            e.preventDefault();
+            sendMessage()
+            break;
+        case "ArrowUp":
+            e.preventDefault();
+            $("#messageText").val(lastMessage)
+            break;
     }
 });
 
