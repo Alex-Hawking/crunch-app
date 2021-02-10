@@ -29,6 +29,7 @@ script {
 
 .modalButton:hover {
   background: #FE5F55;
+  cursor: pointer;
 }
 
 .modalInput {
